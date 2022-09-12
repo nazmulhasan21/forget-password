@@ -5,14 +5,14 @@ module.exports = async (email, subject, html) => {
     const transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
-        user: 'hasankhan20182@gmail.com',
-        pass: 'xgrjgpvkjgghakgb',
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS,
       },
       port: 465,
-      host: 'smtp.gmail.com',
+      host: process.env.EMAIL_HOST,
     });
     await transporter.sendMail({
-      from: '"Verify your email" <support@trioaceinternational.com>',
+      from: `"Verify your email" <${process.env.EMAIL_USER}>`,
       to: email,
       subject: subject,
       html: html,
